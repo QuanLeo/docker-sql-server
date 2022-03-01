@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  db:
+    image: mysql/mysql-server:5.7
+    command: --character-set-server=utf8mb4
+    environment:
+      MYSQL_ROOT_PASSWORD: dbpass
+      MYSQL_DATABASE: dbtest
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+      - ./database:/var/lib/mysql
+    ports:
+      - 3306:3306
